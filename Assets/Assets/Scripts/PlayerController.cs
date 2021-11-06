@@ -35,11 +35,11 @@ public class PlayerController : MonoBehaviour
             timeSpacePressed = 0;
             rb.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetButton("D"))
         {
             rb.AddForce(Vector2.right * speed * Time.deltaTime);
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetButton("A"))
         {
             rb.AddForce(Vector2.left * speed * Time.deltaTime);
         }
