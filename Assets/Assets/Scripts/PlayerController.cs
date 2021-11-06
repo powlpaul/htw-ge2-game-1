@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 5;
     [SerializeField] private float jumpSpeed = 5;
     [SerializeField] private float fallSpeed = 20;
+    [SerializeField] private float jumpHeight = 5;
+    [SerializeField] private float jumpMaxFloorDistance = 4;
+
     [SerializeField] private Vector2 jumpVariance = new Vector2(2,5);
     private float timeSpacePressed = 0;
     private Rigidbody2D rb;
@@ -18,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {     
+        if (Input.GetKeyDown(KeyCode.Space) && JumpingAllowed())
     {
         float jumpHeight = 0;
         if (Input.GetKeyDown(KeyCode.Space))
@@ -47,5 +52,14 @@ public class PlayerController : MonoBehaviour
         {
             rb.gravityScale = fallSpeed;
         }
+    }
+
+    // Checks if jumping is allowed by raycasting down for jumpMaxFloorDistance
+    private bool JumpingAllowed()
+    {
+        Vector2 down = Vector2.down;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, down, jumpMaxFloorDistance);
+        if (hit.collider != null) return true;
+        else return false;
     }
 }
