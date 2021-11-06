@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 5;
     [SerializeField] private float jumpSpeed = 5;
     [SerializeField] private float fallSpeed = 20;
-    [SerializeField] private float jumpHeight = 5;
-
+    [SerializeField] private Vector2 jumpVariance = new Vector2(2,5);
+    private float timeSpacePressed = 0;
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -19,10 +19,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+        float jumpHeight = 0;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
+            timeSpacePressed += Time.deltaTime;
+            
+            jumpHeight = Mathf.Lerp(jumpVariance.x, jumpVariance.y, timeSpacePressed / 1f);
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            timeSpacePressed = 0;
+            rb.AddForce(Vector2.up * jumpVariance.y, ForceMode2D.Impulse);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
