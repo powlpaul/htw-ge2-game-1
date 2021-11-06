@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 5;
     [SerializeField] private float jumpSpeed = 5;
+    [SerializeField] private float fallSpeed = 20;
     [SerializeField] private float jumpHeight = 5;
 
     private Rigidbody2D rb;
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
       
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -30,6 +31,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             rb.AddForce(Vector2.left * speed * Time.deltaTime);
+        }
+        if(rb.velocity.y >= 0)
+        {
+            rb.gravityScale = jumpSpeed;
+        }
+        else
+        {
+            rb.gravityScale = fallSpeed;
         }
     }
 }
