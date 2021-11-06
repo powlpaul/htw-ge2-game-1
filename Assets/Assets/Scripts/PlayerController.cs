@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpSpeed = 5;
     [SerializeField] private float fallSpeed = 20;
     [SerializeField] private float jumpHeight = 5;
+    [SerializeField] private float jumpMaxFloorDistance = 4;
 
     private Rigidbody2D rb;
     // Start is called before the first frame update
@@ -18,9 +19,8 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-      
-        if (Input.GetKeyDown(KeyCode.Space))
+    {     
+        if (Input.GetKeyDown(KeyCode.Space) && JumpingAllowed())
         {
             rb.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
         }
@@ -40,5 +40,14 @@ public class PlayerController : MonoBehaviour
         {
             rb.gravityScale = fallSpeed;
         }
+    }
+
+    // Checks if jumping is allowed by raycasting down for jumpMaxFloorDistance
+    private bool JumpingAllowed()
+    {
+        Vector2 down = Vector2.down;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, down, jumpMaxFloorDistance);
+        if (hit.collider != null) return true;
+        else return false;
     }
 }
