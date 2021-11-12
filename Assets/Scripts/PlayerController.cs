@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private int maxJumpDuration = 250;
+    [SerializeField] private int maxJumpDuration = 200;
     [SerializeField] private float speed = 100;
     [SerializeField] private float jumpSpeed = 5;
     [SerializeField] private float fallSpeed = 20;
@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     float inputValue = 0;
 
+    private int jumpFrameCount = 0;
     private bool keyHeld = false;
     private bool isFirstPress = true;
     private long startTime;
@@ -44,9 +45,10 @@ public class PlayerController : MonoBehaviour
         }
 
         //Add force if jump is held for less than 300 ms
-        if (keyHeld && System.DateTimeOffset.Now.ToUnixTimeMilliseconds() - startTime < maxJumpDuration)
+        if (keyHeld && jumpFrameCount < 25)
         {
-            rb.AddForce(Vector2.up * 2, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * 1, ForceMode2D.Impulse);
+            jumpFrameCount++;
         }
 
         transform.rotation = Quaternion.Euler(Vector3.zero);
@@ -62,13 +64,13 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
             keyHeld = true;
             isFirstPress = false;
-            startTime = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
         }
         //Button released
         if (context.canceled)
         {
             keyHeld = false;
             isFirstPress = true;
+            jumpFrameCount = 0;
         }
     }
 
