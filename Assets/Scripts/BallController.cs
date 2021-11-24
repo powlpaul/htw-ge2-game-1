@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     [SerializeField] private double bouncePower = 0;
+    private Vector2 center;
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -19,8 +20,6 @@ public class Ball : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("collision");
-        Vector2 newForce = rb.velocity.normalized * -1;
-        rb.AddForce(newForce * 1000);
+        
     }
 }
