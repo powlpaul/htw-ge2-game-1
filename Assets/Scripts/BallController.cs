@@ -29,5 +29,13 @@ public class BallController : MonoBehaviour
             gameController.BallHitGround();
 
         }
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            Vector2 direction = -(collision.transform.position - transform.position).normalized;
+            rb.velocity = Vector2.zero;
+            rb.AddForce(direction * 2.5f, ForceMode2D.Impulse);
+            Debug.Log("Hit Ball");
+            
+        }
     }
 }
