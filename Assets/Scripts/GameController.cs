@@ -32,11 +32,22 @@ public class GameController : MonoBehaviour
             player1Score++;
             ball.transform.position = ballSpawnPlayer2.transform.position;
         }
+        ball.SetActive(false);
+        Waiter.Wait(3, () => {
+            // Just to make sure by the time we're back to activate it, it still exists and wasn't destroyed.
+            if (ball != null)
+                ball.SetActive(true);
+        });
         Debug.Log("Player 1 Score: " + player1Score + " \n player 2 Score: " + player2Score);
 
     }
+    public void PauseBall(float seconds)
+    {
+       
+    }
     public void OnDrawGizmos()
     {
+        
         Gizmos.DrawSphere(ballSpawnPlayer1.transform.position, 0.5f);
         Gizmos.DrawSphere(ballSpawnPlayer2.transform.position, 0.5f);
     }
