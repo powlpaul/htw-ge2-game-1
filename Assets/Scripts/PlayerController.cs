@@ -5,15 +5,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private int maxJumpDuration = 200;
     [SerializeField] private float speed = 100;
     [SerializeField] private float jumpSpeed = 5;
     [SerializeField] private float fallSpeed = 20;
-    [SerializeField] private float jumpHeight = 8;
+    [SerializeField] private float firstJumpHeight = 8;
     [SerializeField] private float jumpMaxFloorDistance = 4;
-
-    [SerializeField] private Vector2 jumpVariance = new Vector2(2, 5);
-    private float timeSpacePressed = 0;
 
     private Rigidbody2D rb;
     float inputValue = 0;
@@ -21,7 +17,6 @@ public class PlayerController : MonoBehaviour
     private int jumpFrameCount = 0;
     private bool keyHeld = false;
     private bool isFirstPress = true;
-    private long startTime;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +25,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         rb.AddForce(Vector2.right * inputValue * speed * Time.deltaTime);
@@ -44,10 +39,10 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = fallSpeed;
         }
 
-        //Add force if jump is held for less than 300 ms
-        if (keyHeld && jumpFrameCount < 25)
+        //Add force if jump is held for less than 30 frames
+        if (keyHeld && jumpFrameCount < 15)
         {
-            rb.AddForce(Vector2.up * 1, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * 1.5f, ForceMode2D.Impulse);
             jumpFrameCount++;
         }
 
@@ -61,7 +56,7 @@ public class PlayerController : MonoBehaviour
         //Button pressed
         if (JumpingAllowed() && isFirstPress)
         {
-            rb.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * firstJumpHeight, ForceMode2D.Impulse);
             keyHeld = true;
             isFirstPress = false;
         }
