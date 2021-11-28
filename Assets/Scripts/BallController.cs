@@ -31,10 +31,11 @@ public class BallController : MonoBehaviour
         }
         if (collision.gameObject.tag.Equals("Player"))
         {
+            Vector2 playerVelocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
             Vector2 direction = -(collision.transform.position - transform.position).normalized;
             rb.velocity = Vector2.zero;
-            rb.AddForce(direction * 2.5f, ForceMode2D.Impulse);
-            Debug.Log("Hit Ball");
+            rb.AddForce((direction * 2.5f) + playerVelocity / 10, ForceMode2D.Impulse);
+           
             
         }
     }
