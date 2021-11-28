@@ -30,8 +30,8 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1;
         gameCountDown = gameDuration;
         ball.transform.position = ballSpawnPlayer1.transform.position;
-        Player1.transform.position = new Vector2(ballSpawnPlayer1.transform.position.x, -2.8f);
-        Player2.transform.position = new Vector2(ballSpawnPlayer2.transform.position.x, -2.8f);
+       // Player1.transform.position = new Vector2(ballSpawnPlayer1.transform.position.x, -2.8f);
+        //Player2.transform.position = new Vector2(ballSpawnPlayer2.transform.position.x, -2.8f);
     }
 
     private void finalize()
