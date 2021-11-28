@@ -26,10 +26,10 @@
                 {
                     "name": "MenuEsc",
                     "type": "Button",
-                    "id": "e32ccb4f-5535-4507-9b80-494686d594fa",
+                    "id": "a25cbee3-bdc8-4bbc-b44b-a6478aa91f98",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -124,7 +124,7 @@
                 },
                 {
                     "name": "",
-                    "id": "e0583ef1-7add-4ad0-8c40-6b44b09c67dc",
+                    "id": "3f9fde82-6178-485c-8068-e4c666de692a",
                     "path": "<Keyboard>/escape",
                     "interactions": "Press",
                     "processors": "",
