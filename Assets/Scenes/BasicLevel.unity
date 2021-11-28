@@ -874,13 +874,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a45107fc96876bb4e8a532e79ca10b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpDuration: 200
   speed: 1500
   jumpSpeed: 3
   fallSpeed: 3
-  jumpHeight: 5
+  firstJumpHeight: 8
   jumpMaxFloorDistance: 1
-  jumpVariance: {x: 3, y: 4.69}
 --- !u!114 &1314920862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1235,7 +1233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1466962966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.36, y: 2.33, z: 0}
+  m_LocalPosition: {x: -4.48, y: 2.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1501,13 +1499,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a45107fc96876bb4e8a532e79ca10b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpDuration: 200
   speed: 1500
   jumpSpeed: 5
   fallSpeed: 3
-  jumpHeight: 5
+  firstJumpHeight: 8
   jumpMaxFloorDistance: 1
-  jumpVariance: {x: 10, y: 25}
 --- !u!114 &1836188658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1566,6 +1562,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7ab4775f-ca89-4eba-96db-d1b392e9a4d0
     m_ActionName: Navigation/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e32ccb4f-5535-4507-9b80-494686d594fa
+    m_ActionName: Navigation/MenuEsc[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Navigation
