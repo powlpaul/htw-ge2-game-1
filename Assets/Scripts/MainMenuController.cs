@@ -23,7 +23,7 @@ public class MainMenuController : MonoBehaviour
 
     public void StartOnClick()
     {
-        SceneManager.LoadScene("BasicLevel");
+        SceneManager.LoadScene("LevelVar1");
         mainMenu.SetActive(false);
 
         Time.timeScale = 1;

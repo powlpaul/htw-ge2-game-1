@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5950054916708389000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.55, y: -2.8, z: 0}
-  m_LocalScale: {x: 1, y: 1.8099378, z: 1}
+  m_LocalScale: {x: 1.4021381, y: 1.7127442, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5950054916708389000}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &5950054916708389005
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b734487eb5c166949a11c70478ec23c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
     m_ActionName: Navigation/New action
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: e32ccb4f-5535-4507-9b80-494686d594fa
+    m_ActionId: a25cbee3-bdc8-4bbc-b44b-a6478aa91f98
     m_ActionName: Navigation/MenuEsc[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
