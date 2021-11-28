@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput",
+    "name": "Player1Input",
     "maps": [
         {
             "name": "Navigation",
@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "MenuEsc",
+                    "type": "Button",
+                    "id": "a25cbee3-bdc8-4bbc-b44b-a6478aa91f98",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -112,6 +121,17 @@
                     "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "3f9fde82-6178-485c-8068-e4c666de692a",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuEsc",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

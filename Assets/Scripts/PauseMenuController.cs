@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
-public class MenuController : MonoBehaviour
+public class PauseMenuController : MonoBehaviour
 {
-    [SerializeField] private GameObject Menu;
+    [SerializeField] private GameObject pauseMenu;
     [SerializeField] private InputActionAsset controls;
     private InputAction menuEsc;
-    private bool isMenuActive = false;
+    private bool isPauseMenuActive = false;
 
     //Awake is called before Start and works kind of like a constructor / initialisor
     private void Awake()
@@ -20,24 +20,24 @@ public class MenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Menu.SetActive(false);
+        pauseMenu.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (menuEsc.WasReleasedThisFrame() && !isMenuActive)
+        if (menuEsc.WasReleasedThisFrame() && !isPauseMenuActive)
         {
-            Menu.SetActive(true);
-            isMenuActive = true;
+            pauseMenu.SetActive(true);
+            isPauseMenuActive = true;
 
             Time.timeScale = 0;
         }
 
-        else if (menuEsc.WasReleasedThisFrame() && isMenuActive)
+        else if (menuEsc.WasReleasedThisFrame() && isPauseMenuActive)
         {
-            Menu.SetActive(false);
-            isMenuActive = false;
+            pauseMenu.SetActive(false);
+            isPauseMenuActive = false;
 
             Time.timeScale = 1;
         }
@@ -50,7 +50,7 @@ public class MenuController : MonoBehaviour
 
     public void ReturnOnClick()
     {
-        Menu.SetActive(false);
+        pauseMenu.SetActive(false);
         Time.timeScale = 1;
     }
 }
