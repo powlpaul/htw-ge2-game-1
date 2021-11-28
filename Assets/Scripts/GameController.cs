@@ -20,8 +20,10 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameCountDown -= 1 * Time.deltaTime;
-        if (gameCountDown <= 0) finalize();
+        if (Time.timeScale > 0) { 
+            gameCountDown -= 1 * Time.deltaTime;
+            if (gameCountDown <= 0) finalize();
+        }
     }
     private void Initialize(float gameDuration)
     {
