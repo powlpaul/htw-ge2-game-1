@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-
+using UnityEngine.UI;
 public class PauseMenuController : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private InputActionAsset controls;
     private InputAction menuEsc;
     private bool isPauseMenuActive = false;
-
+    private Text Player1Score;private Text Player2Score;
     //Awake is called before Start and works kind of like a constructor / initialisor
     private void Awake()
     {
@@ -20,9 +20,17 @@ public class PauseMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pauseMenu.SetActive(false);
+       Player1Score = GameObject.Find("Player1Score").GetComponent<Text>();
+       Player2Score = GameObject.Find("Player2Score").GetComponent<Text>();
+        UpdateScoreBoard(2, 33);
+       pauseMenu.SetActive(false);
     }
 
+    public void UpdateScoreBoard(int player1Score, int player2Score)
+    {
+        Player1Score.text = string.Format("{0,2}", player1Score);
+        Player2Score.text = string.Format("{0,2}", player2Score);
+    }
     // Update is called once per frame
     void Update()
     {
