@@ -23,7 +23,7 @@ public class BallController : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name.Equals("Ground"))
+        if (collision.gameObject.tag.Equals("Ground"))
         {
             rb.velocity = Vector2.zero;
             gameController.BallHitGround();

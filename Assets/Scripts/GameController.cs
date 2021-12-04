@@ -8,12 +8,15 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject ball;
     [SerializeField] private GameObject Player1;[SerializeField] private GameObject Player2;
     [SerializeField] private GameObject ballSpawnPlayer1; [SerializeField] private GameObject ballSpawnPlayer2;
+    private PauseMenuController menucontroller;
     private int player1Score = 0; private int player2Score = 0;
+
     private Vector2 center = new Vector2(0, 0);
     private float gameCountDown;
     
     void Start()
     {
+        menucontroller = GameObject.Find("MenuManager").GetComponent<PauseMenuController>();
         Initialize(60f);
     }
 
@@ -59,6 +62,7 @@ public class GameController : MonoBehaviour
             if (ball != null)
                 ball.SetActive(true);
         });
+        menucontroller.UpdateScoreBoard(player1Score, player2Score);
         Debug.Log("Player 1 Score: " + player1Score + " \n player 2 Score: " + player2Score);
 
     }
