@@ -8,9 +8,11 @@ public class PauseMenuController : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private InputActionAsset controls;
+    private GameObject EndOfGameScreen;
     private InputAction menuEsc;
     private bool isPauseMenuActive = false;
     private Text Player1Score;private Text Player2Score;
+    private Text winnerAnnouncement;
     //Awake is called before Start and works kind of like a constructor / initialisor
     private void Awake()
     {
@@ -20,16 +22,24 @@ public class PauseMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       Player1Score = GameObject.Find("Player1Score").GetComponent<Text>();
-       Player2Score = GameObject.Find("Player2Score").GetComponent<Text>();
-        UpdateScoreBoard(2, 33);
-       pauseMenu.SetActive(false);
+        EndOfGameScreen = GameObject.Find("EndOfGameScreen");
+        Player1Score = GameObject.Find("Player1Score").GetComponent<Text>();
+        Player2Score = GameObject.Find("Player2Score").GetComponent<Text>();
+        winnerAnnouncement = GameObject.Find("WinnerAnnouncement").GetComponent<Text>();
+        UpdateScoreBoard(0, 0);
+        pauseMenu.SetActive(false);
+        EndOfGameScreen.SetActive(false);
     }
 
     public void UpdateScoreBoard(int player1Score, int player2Score)
     {
-        Player1Score.text = string.Format("{0,2}", player1Score);
-        Player2Score.text = string.Format("{0,2}", player2Score);
+        Player1Score.text = string.Format("{0}", player1Score);
+        Player2Score.text = string.Format("{0}", player2Score);
+    }
+    public void ShowEndOfGameScreen(string message)
+    {
+        winnerAnnouncement.text = message;
+        EndOfGameScreen.SetActive(true);
     }
     // Update is called once per frame
     void Update()

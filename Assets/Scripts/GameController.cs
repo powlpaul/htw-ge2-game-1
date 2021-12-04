@@ -41,6 +41,7 @@ public class GameController : MonoBehaviour
     {
         string message;
         message = player1Score > player2Score ? "Player 1 won" : "Player 2 won";
+        menucontroller.ShowEndOfGameScreen(message);
         Debug.Log(message);
         Time.timeScale = 0;
     }
@@ -63,7 +64,7 @@ public class GameController : MonoBehaviour
                 ball.SetActive(true);
         });
         menucontroller.UpdateScoreBoard(player1Score, player2Score);
-        Debug.Log("Player 1 Score: " + player1Score + " \n player 2 Score: " + player2Score);
+        //Debug.Log("Player 1 Score: " + player1Score + " \n player 2 Score: " + player2Score);
 
     }
     public void PauseBall(float seconds)
