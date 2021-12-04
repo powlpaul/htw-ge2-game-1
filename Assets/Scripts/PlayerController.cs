@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float firstJumpHeight = 8;
     [SerializeField] private float jumpMaxFloorDistance = 4;
 
+    private AudioController audioController;
     private Rigidbody2D rb;
     float inputValue = 0;
 
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioController = GameObject.Find("AudioManager").GetComponent<AudioController>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -59,10 +61,12 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * firstJumpHeight, ForceMode2D.Impulse);
             keyHeld = true;
             isFirstPress = false;
+            audioController.PlayJumpSound();
         }
         //Button released
         if (context.canceled)
         {
+            
             keyHeld = false;
             isFirstPress = true;
             jumpFrameCount = 0;
