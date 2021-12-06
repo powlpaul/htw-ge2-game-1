@@ -13,6 +13,7 @@ public class PauseMenuController : MonoBehaviour
     private bool isPauseMenuActive = false;
     private Text Player1Score;private Text Player2Score;
     private Text winnerAnnouncement;
+    private Text timer;
     //Awake is called before Start and works kind of like a constructor / initialisor
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class PauseMenuController : MonoBehaviour
         Player1Score = GameObject.Find("Player1Score").GetComponent<Text>();
         Player2Score = GameObject.Find("Player2Score").GetComponent<Text>();
         winnerAnnouncement = GameObject.Find("WinnerAnnouncement").GetComponent<Text>();
+        timer = GameObject.Find("Timer").GetComponent<Text>();
         UpdateScoreBoard(0, 0);
         pauseMenu.SetActive(false);
         EndOfGameScreen.SetActive(false);
@@ -70,5 +72,10 @@ public class PauseMenuController : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void UpdateTimer(float remainingTime)
+    {
+        timer.text = string.Format("{0:00}:{1:00}", (int) (remainingTime / 60), (int) (remainingTime % 60));
     }
 }

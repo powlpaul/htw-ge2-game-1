@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
     {
         audioController = GameObject.Find("AudioManager").GetComponent<AudioController>();
         menucontroller = GameObject.Find("MenuManager").GetComponent<PauseMenuController>();
-        Initialize(60f);
+        Initialize(90f);
     }
 
     // Update is called once per frame
@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
             gameCountDown -= 1 * Time.deltaTime;
             if (gameCountDown <= 0) finalize();
         }
+        menucontroller.UpdateTimer(gameCountDown);
     }
     private void Initialize(float gameDuration)
     {
