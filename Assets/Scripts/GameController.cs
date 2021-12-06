@@ -10,12 +10,13 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject ballSpawnPlayer1; [SerializeField] private GameObject ballSpawnPlayer2;
     private PauseMenuController menucontroller;
     private int player1Score = 0; private int player2Score = 0;
-
+    private AudioController audioController;
     private Vector2 center = new Vector2(0, 0);
     private float gameCountDown;
     
     void Start()
     {
+        audioController = GameObject.Find("AudioManager").GetComponent<AudioController>();
         menucontroller = GameObject.Find("MenuManager").GetComponent<PauseMenuController>();
         Initialize(60f);
     }
@@ -40,6 +41,7 @@ public class GameController : MonoBehaviour
     private void finalize()
     {
         string message;
+        audioController.PlayEndSound();
         message = player1Score > player2Score ? "Player 1 won" : "Player 2 won";
         menucontroller.ShowEndOfGameScreen(message);
         Debug.Log(message);
