@@ -40,6 +40,7 @@ public class PauseMenuController : MonoBehaviour
     }
     public void ShowEndOfGameScreen(string message)
     {
+        timer.text = "";
         winnerAnnouncement.text = message;
         EndOfGameScreen.SetActive(true);
     }
@@ -48,6 +49,7 @@ public class PauseMenuController : MonoBehaviour
     {
         if (menuEsc.WasReleasedThisFrame() && !isPauseMenuActive)
         {
+            Debug.Log("menu was paused");
             pauseMenu.SetActive(true);
             isPauseMenuActive = true;
 
@@ -70,12 +72,15 @@ public class PauseMenuController : MonoBehaviour
 
     public void ReturnOnClick()
     {
+        Debug.Log("resume button was clicked");
         pauseMenu.SetActive(false);
+        isPauseMenuActive = false;
         Time.timeScale = 1;
     }
 
     public void UpdateTimer(float remainingTime)
     {
-        timer.text = string.Format("{0:00}:{1:00}", (int) (remainingTime / 60), (int) (remainingTime % 60));
+        if (remainingTime > 0) timer.text = string.Format("{0:00}:{1:00}", (int)(remainingTime / 60), (int)(remainingTime % 60));
+        else timer.text = "";
     }
 }
