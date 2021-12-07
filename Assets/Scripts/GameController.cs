@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour
         string message;
         audioController.PlayEndSound();
         message = player1Score > player2Score ? "Player 1 won" : "Player 2 won";
+        message = player1Score == player2Score ? "DRAW" : message;
         menucontroller.ShowEndOfGameScreen(message);
         Debug.Log(message);
         Time.timeScale = 0;
