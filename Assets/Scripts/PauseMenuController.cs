@@ -49,19 +49,13 @@ public class PauseMenuController : MonoBehaviour
     {
         if (menuEsc.WasReleasedThisFrame() && !isPauseMenuActive)
         {
-            Debug.Log("menu was paused");
-            pauseMenu.SetActive(true);
-            isPauseMenuActive = true;
 
-            Time.timeScale = 0;
+            ReturnOnClick();
         }
 
         else if (menuEsc.WasReleasedThisFrame() && isPauseMenuActive)
         {
-            pauseMenu.SetActive(false);
-            isPauseMenuActive = false;
-
-            Time.timeScale = 1;
+            ReturnOnClick();
         }
     }
     public void ResetOnClick()
@@ -73,9 +67,19 @@ public class PauseMenuController : MonoBehaviour
     public void ReturnOnClick()
     {
         Debug.Log("resume button was clicked");
-        pauseMenu.SetActive(false);
-        isPauseMenuActive = false;
-        Time.timeScale = 1;
+        if (isPauseMenuActive)
+        {
+            
+            pauseMenu.SetActive(false);
+            isPauseMenuActive = false;
+            Time.timeScale = 1;
+        }
+        else
+        {
+            pauseMenu.SetActive(true);
+            isPauseMenuActive = true;
+            Time.timeScale = 0;
+        }
     }
 
     public void UpdateTimer(float remainingTime)
