@@ -7,6 +7,7 @@ public class AudioController : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] private AudioClip hitBall;
     [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip endSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,11 @@ public class AudioController : MonoBehaviour
     public void PlayJumpSound()
     {
         audioSource.PlayOneShot(jumpSound, 0.25f);
+    }
+
+    public void PlayEndSound()
+    {
+        audioSource.PlayOneShot(endSound, 0.5f);
     }
 }
 
