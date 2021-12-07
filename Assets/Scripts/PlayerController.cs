@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
     public void Walk(InputAction.CallbackContext context)
     {
-
+        audioController.PlayWalkingSound();
         inputValue = context.ReadValue<float>();
     }
 

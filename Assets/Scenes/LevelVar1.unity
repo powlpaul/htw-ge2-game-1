@@ -1842,6 +1842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBall: {fileID: 8300000, guid: f68b6df89e5884a42adb5dfea7a757dc, type: 3}
   jumpSound: {fileID: 8300000, guid: 5a02ed44977e6e744b284c5f0587ec23, type: 3}
+  walkingSound: {fileID: 0}
   endSound: {fileID: 8300000, guid: 49127753d151e5e4f996887a68fa07bc, type: 3}
 --- !u!1001 &1602801850
 PrefabInstance:
