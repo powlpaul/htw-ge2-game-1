@@ -1856,6 +1856,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 5950054916708389006, guid: 835fee36558f00b4488a726649edea5c,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5950054916708389006, guid: 835fee36558f00b4488a726649edea5c,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5950054916708389007, guid: 835fee36558f00b4488a726649edea5c,
         type: 3}
       propertyPath: m_Size.y

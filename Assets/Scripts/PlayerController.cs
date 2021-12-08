@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 100;
-    [SerializeField] private float jumpSpeed = 5;
+    [SerializeField] private float jumpSpeed = 1.5f;
     [SerializeField] private float fallSpeed = 20;
     [SerializeField] private float firstJumpHeight = 8;
     [SerializeField] private float jumpMaxFloorDistance = 4;
@@ -29,9 +29,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        rb.AddForce(Vector2.right * inputValue * speed * Time.deltaTime);
-
         if (rb.velocity.y >= 0)
         {
             rb.gravityScale = jumpSpeed;
@@ -41,10 +38,20 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = fallSpeed;
         }
 
+        if(inputValue != 0)
+        {
+            rb.AddForce(Vector2.right * inputValue * speed * Time.deltaTime);
+        }
+        else
+        {
+            rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+        }
+
+
         //Add force if jump is held for less than 30 frames
         if (keyHeld && jumpFrameCount < 15)
         {
-            rb.AddForce(Vector2.up * 1.5f, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
             jumpFrameCount++;
         }
 

@@ -14,7 +14,8 @@ public class PauseMenuController : MonoBehaviour
     private Text Player1Score;private Text Player2Score;
     private Text winnerAnnouncement;
     private Text timer;
-    //Awake is called before Start and works kind of like a constructor / initialisor
+
+    //Awake is called before Start and works kind of like a constructor / initialiser
     private void Awake()
     {
         var gameplayActionMap = controls.FindActionMap("Navigation");
