@@ -29,7 +29,7 @@ public class CameraTransform : MonoBehaviour
         float distance = Vector3.Distance(player1.position, player2.position);
         float camZoom = (8 * zoomBase + distance * zoomScalar) / 9;
 
-        Camera.current.orthographicSize = camZoom;
+        Camera.main.orthographicSize = camZoom;
 
         // Make Camera smooth, adapted from https://docs.unity3d.com/ScriptReference/Vector3.SmoothDamp.html
         Vector3 velocity = Vector3.zero;

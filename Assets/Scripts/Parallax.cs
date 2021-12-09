@@ -25,7 +25,7 @@ public class Parallax : MonoBehaviour
         float distanceX = (cam.transform.position.x * parallaxEffect);
         float distanceY = (cam.transform.position.y * parallaxEffect);
         transform.position = new Vector3(startposX + distanceX, startposY + distanceY, transform.position.z);
-        transform.localScale = new Vector3((sizeBase + Camera.current.orthographicSize * camSizeScalar) / 2, (sizeBase +Camera.current.orthographicSize * camSizeScalar) / 2, (sizeBase +Camera.current.orthographicSize * camSizeScalar) / 2);
+        transform.localScale = new Vector3((sizeBase + Camera.main.orthographicSize * camSizeScalar) / 2, (sizeBase +Camera.main.orthographicSize * camSizeScalar) / 2, (sizeBase +Camera.main.orthographicSize * camSizeScalar) / 2);
 
     }
 }
