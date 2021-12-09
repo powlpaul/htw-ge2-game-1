@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float fallSpeed = 20;
     [SerializeField] private float firstJumpHeight = 8;
     [SerializeField] private float jumpMaxFloorDistance = 4;
+    [SerializeField] private Animator animator;
 
     private AudioController audioController;
     private Rigidbody2D rb;
@@ -29,9 +30,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        rb.AddForce(Vector2.right * inputValue * speed * Time.deltaTime);
-
         if (rb.velocity.y >= 0)
         {
             rb.gravityScale = jumpSpeed;
@@ -41,14 +39,45 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = fallSpeed;
         }
 
-        //Add force if jump is held for less than 30 frames
+        //velocity set to zero if no movement to the right / left
+        if(inputValue != 0)
+        {
+            rb.AddForce(Vector2.right * inputValue * speed * Time.deltaTime);
+        }
+        else
+        {
+            rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+        }
+
+
+        //Add force if jump is held for less than 15 frames
         if (keyHeld && jumpFrameCount < 15)
         {
-            rb.AddForce(Vector2.up * 1.5f, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * 1.2f, ForceMode2D.Impulse);
             jumpFrameCount++;
         }
 
         transform.rotation = Quaternion.Euler(Vector3.zero);
+
+        //determines whether player should look left or right
+        if (inputValue < 0)
+        {
+            transform.localScale = new Vector3(0.1f, transform.localScale.y, transform.localScale.z);
+        }
+        else if (inputValue > 0)
+        {
+            transform.localScale = new Vector3(-0.1f, transform.localScale.y, transform.localScale.z);
+        }
+
+        animator.SetFloat("Speed", Mathf.Abs(inputValue));
+        if(!JumpingAllowed())
+        {
+            animator.SetBool("isJumping", true);
+        }
+        else
+        {
+            animator.SetBool("isJumping", false);
+        }
     }
 
     //Eventhandler for jump input. Is called when jump is initially pressed and released.
@@ -73,6 +102,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //get horizontal direction for walking
     public void Walk(InputAction.CallbackContext context)
     {
         audioController.PlayWalkingSound();
