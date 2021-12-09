@@ -43,4 +43,8 @@ public class BallController : MonoBehaviour
         }
         else audioController.PlayBallBounceSound();
     }
+    public Vector2 GetPosition()
+    {
+        return new Vector2(transform.position.x, transform.position.y);
+    }
 }
