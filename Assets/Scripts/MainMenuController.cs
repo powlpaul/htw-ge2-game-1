@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenu;
-    private InputAction menuEsc;
 
     // Start is called before the first frame update
     void Start()

@@ -8,6 +8,7 @@ public class PauseMenuController : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private InputActionAsset controls;
+
     private GameObject EndOfGameScreen;
     private GameObject ballIndicator;
     private InputAction menuEsc;
@@ -17,6 +18,7 @@ public class PauseMenuController : MonoBehaviour
     private Text winnerAnnouncement;
     private Text timer;
     private Transform cameraBounds;
+    private bool isEndScreenActive = false;
 
     //Awake is called before Start and works kind of like a constructor / initialiser
     private void Awake()
@@ -51,6 +53,7 @@ public class PauseMenuController : MonoBehaviour
         timer.text = "";
         winnerAnnouncement.text = message;
         EndOfGameScreen.SetActive(true);
+        isEndScreenActive = true;
     }
     // Update is called once per frame
     void Update()
@@ -64,6 +67,7 @@ public class PauseMenuController : MonoBehaviour
         {
             ballIndicator.SetActive(false);
         }
+
         if (menuEsc.WasReleasedThisFrame() && !isPauseMenuActive)
         {
 
@@ -91,12 +95,19 @@ public class PauseMenuController : MonoBehaviour
             isPauseMenuActive = false;
             Time.timeScale = 1;
         }
-        else
+        else if(!isEndScreenActive)
         {
             pauseMenu.SetActive(true);
             isPauseMenuActive = true;
             Time.timeScale = 0;
         }
+    }
+
+
+
+    public void QuitOnClick()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void UpdateTimer(float remainingTime)
