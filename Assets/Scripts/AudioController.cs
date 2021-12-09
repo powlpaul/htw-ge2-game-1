@@ -9,6 +9,8 @@ public class AudioController : MonoBehaviour
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip walkingSound;
     [SerializeField] private AudioClip endSound;
+    [SerializeField] private AudioClip scoreSound;
+    [SerializeField] private AudioClip ballBounce;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,15 @@ public class AudioController : MonoBehaviour
     public void PlayWalkingSound()
     {
         audioSource.PlayOneShot(walkingSound, 0.2f);
+    }
+
+    public void PlayScoreSound()
+    {
+        audioSource.PlayOneShot(scoreSound, 0.4f);
+    }
+    public void PlayBallBounceSound()
+    {
+        audioSource.PlayOneShot(ballBounce, 0.2f);
     }
 }
 

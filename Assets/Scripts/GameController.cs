@@ -67,6 +67,7 @@ public class GameController : MonoBehaviour
             if (ball != null)
                 ball.SetActive(true);
         });
+        audioController.PlayScoreSound();
         menucontroller.UpdateScoreBoard(player1Score, player2Score);
         //Debug.Log("Player 1 Score: " + player1Score + " \n player 2 Score: " + player2Score);
 

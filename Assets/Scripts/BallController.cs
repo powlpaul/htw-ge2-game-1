@@ -31,7 +31,7 @@ public class BallController : MonoBehaviour
             gameController.BallHitGround();
 
         }
-        if (collision.gameObject.tag.Equals("Player"))
+        else if (collision.gameObject.tag.Equals("Player"))
         {
             audioController.PlayHitBallSound();
             Vector2 playerVelocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
@@ -41,5 +41,6 @@ public class BallController : MonoBehaviour
            
             
         }
+        else audioController.PlayBallBounceSound();
     }
 }
