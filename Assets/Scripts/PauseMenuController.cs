@@ -9,11 +9,14 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private InputActionAsset controls;
     private GameObject EndOfGameScreen;
+    private GameObject ballIndicator;
     private InputAction menuEsc;
+    private BallController ballController;
     private bool isPauseMenuActive = false;
     private Text Player1Score;private Text Player2Score;
     private Text winnerAnnouncement;
     private Text timer;
+    private Transform cameraBounds;
 
     //Awake is called before Start and works kind of like a constructor / initialiser
     private void Awake()
@@ -28,7 +31,11 @@ public class PauseMenuController : MonoBehaviour
         Player1Score = GameObject.Find("Player1Score").GetComponent<Text>();
         Player2Score = GameObject.Find("Player2Score").GetComponent<Text>();
         winnerAnnouncement = GameObject.Find("WinnerAnnouncement").GetComponent<Text>();
+        ballIndicator = GameObject.Find("BallIndicator");
+        ballIndicator.SetActive(false);
         timer = GameObject.Find("Timer").GetComponent<Text>();
+        cameraBounds = GameObject.Find("CameraBounds").transform;
+        ballController = GameObject.Find("Ball").GetComponent<BallController>();
         UpdateScoreBoard(0, 0);
         pauseMenu.SetActive(false);
         EndOfGameScreen.SetActive(false);
@@ -48,6 +55,15 @@ public class PauseMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(cameraBounds.position.y < ballController.GetPosition().y)
+        {
+            ballIndicator.SetActive(true);
+            ballIndicator.transform.position = new Vector3(ballController.GetPosition().x, ballIndicator.transform.position.y,0);
+        }
+        else
+        {
+            ballIndicator.SetActive(false);
+        }
         if (menuEsc.WasReleasedThisFrame() && !isPauseMenuActive)
         {
 

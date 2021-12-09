@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject ball;
     [SerializeField] private GameObject Player1;[SerializeField] private GameObject Player2;
     [SerializeField] private GameObject ballSpawnPlayer1; [SerializeField] private GameObject ballSpawnPlayer2;
+    private Transform dummyBallPos;
     private PauseMenuController menucontroller;
     private int player1Score = 0; private int player2Score = 0;
     private AudioController audioController;
@@ -16,6 +17,7 @@ public class GameController : MonoBehaviour
     
     void Start()
     {
+        dummyBallPos = GameObject.Find("DummyBall").GetComponent<Transform>();
         audioController = GameObject.Find("AudioManager").GetComponent<AudioController>();
         menucontroller = GameObject.Find("MenuManager").GetComponent<PauseMenuController>();
         Initialize(90f);
@@ -54,18 +56,21 @@ public class GameController : MonoBehaviour
         if(ball.transform.position.x < center.x)
         {
             player2Score++;
-            ball.transform.position = ballSpawnPlayer1.transform.position;
+            ball.transform.position = dummyBallPos.position = ballSpawnPlayer1.transform.position;
         }
         else
         {
             player1Score++;
-            ball.transform.position = ballSpawnPlayer2.transform.position;
+            ball.transform.position  = dummyBallPos.position = ballSpawnPlayer2.transform.position;
         }
         ball.SetActive(false);
         Waiter.Wait(2, () => {
             // Just to make sure by the time we're back to activate it, it still exists and wasn't destroyed.
             if (ball != null)
+            {
+                dummyBallPos.position = new Vector2(-15, 0);
                 ball.SetActive(true);
+            }
         });
         audioController.PlayScoreSound();
         menucontroller.UpdateScoreBoard(player1Score, player2Score);
