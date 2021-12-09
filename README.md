@@ -1,6 +1,7 @@
-2D Unity game project
+## Wing It - A 2D Unity Game Project
 
-## Team gem-enjins: Krist Baliev, Leonard Valentin, To Uyen Nguyen, Paul Klingberg
+Made by Team gem-enjins: 
+Krist Baliev, Leonard Valentin, To Uyen Nguyen, Paul Klingberg
 
 ### Game description: 
 Blobby Volley like game about two thicc and energetic birbs playing volleyball with each other.
@@ -12,7 +13,7 @@ A timer is set at the start of the game. The volleyball spawns on the playing fi
 #### Player 1:
 * W: Jump
 * A: Move Left
-* D; Move Right
+* D: Move Right
 
 #### Player 2:
 * Up Arrow: Jump
@@ -20,4 +21,6 @@ A timer is set at the start of the game. The volleyball spawns on the playing fi
 * Right Arrow: Move Right
 
 ### You can also connect your controller to the game!
+
+![gameplay footage](https://github.com/powlpaul/htw-ge2-game-1/blob/readMe/readme/birb-gameplay.gif)
 
