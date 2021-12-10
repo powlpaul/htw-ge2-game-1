@@ -7,7 +7,8 @@ using UnityEngine.InputSystem;
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenu;
-
+    [SerializeField] GameObject mainMenuItems;
+    [SerializeField] GameObject optionMenuItems;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,5 +34,10 @@ public class MainMenuController : MonoBehaviour
         //In Unity Editor mode the program does not actually quit
         Debug.Log("Quit");
         Application.Quit();
+    }
+
+    public void OptionOnClick()
+    {
+        mainMenuItems.SetActive(false);
     }
 }
