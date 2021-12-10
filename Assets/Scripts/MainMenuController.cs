@@ -13,12 +13,21 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] GameObject optionMenuItems;
     [SerializeField] private Text MusicVolumeDisplay;
     [SerializeField] private Text EffectsVolumeDisplay;
-    private float MusicVolume = 10;
-    private float EffectsVolume = 10;
+    private AudioController ac;
+    public SoundValueHolder holder;
+    private int MusicVolume = 10;
+    private int EffectsVolume = 10;
     // Start is called before the first frame update
     void Start()
     {
         mainMenu.SetActive(true);
+        ac = GameObject.Find("AudioManager").GetComponent<AudioController>();
+
+        holder = GameObject.Find("SoundValueHolder").GetComponent<SoundValueHolder>();
+        MusicVolume = (int)(PlayerPrefs.GetFloat("MusicVolumeScale", 1) * 10);
+        EffectsVolume = (int) (PlayerPrefs.GetFloat("EffectsVolumeScale", 1) * 10);
+        MusicVolumeDisplay.text = "" + MusicVolume;
+        EffectsVolumeDisplay.text = "" + EffectsVolume;
     }
 
     // Update is called once per frame
@@ -52,6 +61,7 @@ public class MainMenuController : MonoBehaviour
     {
         mainMenuItems.SetActive(true);
         optionMenuItems.SetActive(false);
+        PlayerPrefs.Save();
     }
 
     public void MusicButtonClick(bool right)
@@ -66,6 +76,9 @@ public class MainMenuController : MonoBehaviour
         }
 
         MusicVolumeDisplay.text = "" +  MusicVolume;
+        ac.SetMusicVolumeScale(MusicVolume);
+        PlayerPrefs.SetFloat("MusicVolumeScale", MusicVolume / 10f);
+
     }
 
     public void EffectsButtonClick(bool right)
@@ -81,6 +94,9 @@ public class MainMenuController : MonoBehaviour
             EffectsVolume--;
         }
 
+
         EffectsVolumeDisplay.text = "" + EffectsVolume;
+        ac.SetEffectsVolumeScale(EffectsVolume);
+        PlayerPrefs.SetFloat("EffectsVolumeScale", EffectsVolume / 10f);
     }
 }
