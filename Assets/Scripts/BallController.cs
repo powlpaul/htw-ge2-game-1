@@ -6,6 +6,8 @@ public class BallController : MonoBehaviour
 {
     [SerializeField] private double bouncePower = 0;
     [SerializeField] private GameObject gameControllerGameObject;
+    [SerializeField] private Animator ballAnimator;
+
     private AudioController audioController;
     private GameController gameController;
     private Vector2 center;
@@ -16,6 +18,7 @@ public class BallController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         audioController = GameObject.Find("AudioManager").GetComponent<AudioController>();
         gameController = gameControllerGameObject.GetComponent<GameController>();
+        ballAnimator.SetInteger("ballSprite", Random.Range(1, 3));
     }
 
     // Update is called once per frame
@@ -25,11 +28,13 @@ public class BallController : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
+        int r = Random.Range(1, 3);
+        ballAnimator.SetInteger("ballSprite", r);
+
         if (collision.gameObject.tag.Equals("Ground"))
         {
             rb.velocity = Vector2.zero;
             gameController.BallHitGround();
-
         }
         else if (collision.gameObject.tag.Equals("Player"))
         {
@@ -38,8 +43,7 @@ public class BallController : MonoBehaviour
             Vector2 direction = -(collision.transform.position - transform.position).normalized;
             rb.velocity = Vector2.zero;
             rb.AddForce((direction * 2.5f) + playerVelocity / 10, ForceMode2D.Impulse);
-           
-            
+
         }
         else audioController.PlayBallBounceSound();
     }

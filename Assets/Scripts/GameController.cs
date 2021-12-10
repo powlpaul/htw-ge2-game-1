@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject ball;
     [SerializeField] private GameObject Player1;[SerializeField] private GameObject Player2;
     [SerializeField] private GameObject ballSpawnPlayer1; [SerializeField] private GameObject ballSpawnPlayer2;
+
     private Transform dummyBallPos;
     private PauseMenuController menucontroller;
     private int player1Score = 0; private int player2Score = 0;
