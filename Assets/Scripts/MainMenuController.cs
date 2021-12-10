@@ -39,5 +39,6 @@ public class MainMenuController : MonoBehaviour
     public void OptionOnClick()
     {
         mainMenuItems.SetActive(false);
+        optionMenuItems.SetActive(true);
     }
 }
